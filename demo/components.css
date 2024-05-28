@@ -3,4 +3,48 @@
     content: "";
     background-color: black;
 }
+
+a .btn:hover{
+    color: unset;
+}
+
+.btn {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+}
+
+
+.btn-hover::before {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-color);
+    transition: 0.3s ease-in-out;
+}
+
+.btn-hover:hover::before {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 100%;
+}
+
+.btn span{
+    color: #ffffff;
+    position: relative;
+    z-index: 10;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 1000;
+}
+
 /*END BUTTON*/

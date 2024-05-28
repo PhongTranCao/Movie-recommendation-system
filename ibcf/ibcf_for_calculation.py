@@ -7,7 +7,7 @@ from sklearn.neighbors import NearestNeighbors
 import joblib
 
 # create a data frame of this dataset
-dataset = pd.read_csv('ratings.dat',
+dataset = pd.read_csv('../data_processing/ratings.dat',
                       sep='::',
                       names=['user', 'item', 'rating', 'timestamp'],
                       engine='python').drop('timestamp', axis=1)
@@ -27,13 +27,14 @@ full_dataset = pd.merge(all_items_df, missing_index_dataset, on='item', how='lef
 # ATTENTION!: when run the code for the 1st time, uncomment this block of code to create a
 # copy of knn model, which will save your times when running the code several times
 # K-nearest-neighbors
-model_knn = joblib.load('../data_processing/model_knn.pkl')
+# model_knn = joblib.load('../data_processing/model_knn.pkl')
 # comment and then uncomment this line after the 1st time run the code
+
 movie_wide = full_dataset.pivot(index='item', columns='user', values='rating').fillna(0).values
 # print(np.unique(movie_wide[1194]))
-# model_knn = NearestNeighbors(n_neighbors=11, metric='cosine')
-# model_knn.fit(movie_wide)
-# joblib.dump(model_knn, 'model_knn.pkl')
+model_knn = NearestNeighbors(n_neighbors=11, metric='cosine')
+model_knn.fit(movie_wide)
+joblib.dump(model_knn, '../data_processing/model_knn.pkl')
 
 
 def print_similar_movies(item_input):
@@ -61,14 +62,14 @@ def print_similar_movies(item_input):
             all_avg_item_rating += avg_rating_each_movie * (1 - distances.flatten()[movie_counter])
             all_item_cossim += abs(1 - distances.flatten()[movie_counter])
 
-    print(all_avg_item_rating, all_item_cossim)
-    print('Average rating for {0}: {1}'.format(item_input, abs(all_avg_item_rating) / all_item_cossim))
-    print('True rating for {0}: {1}'.format(item_input, avg_movie_rating.loc[item_input, 'mean']))
+    # print(all_avg_item_rating, all_item_cossim)
+    # print('Average rating for {0}: {1}'.format(item_input, abs(all_avg_item_rating) / all_item_cossim))
+    # print('True rating for {0}: {1}'.format(item_input, avg_movie_rating.loc[item_input, 'mean']))
     return np.array([item_input, all_avg_item_rating / all_item_cossim])
 
 
-predict_rating = np.empty((0, 2))
-for i in avg_movie_rating.index:
-    predict_rating = np.append(predict_rating, [print_similar_movies(i)], axis=0)
-
-np.savetxt('predict_movie_rating.dat', predict_rating, delimiter='::', fmt=['%d', '%.2f'])
+# predict_rating = np.empty((0, 2))
+# for i in avg_movie_rating.index:
+#     predict_rating = np.append(predict_rating, [print_similar_movies(i)], axis=0)
+#
+# np.savetxt('predict_movie_rating.dat', predict_rating, delimiter='::', fmt=['%d', '%.2f'])

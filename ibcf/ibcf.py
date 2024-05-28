@@ -2,7 +2,8 @@ import json
 import pandas as pd
 import joblib
 
-dataset = pd.read_csv('ratings.dat',
+
+dataset = pd.read_csv('../data_processing/ratings.dat',
                       sep='::',
                       names=['user', 'item', 'rating', 'timestamp'],
                       engine='python').drop('timestamp', axis=1)

@@ -3987,7 +3987,7 @@ autocomplete({
 function sendData() {
     const value = document.getElementById('search-box').value;
     $.ajax({
-        url: 'http://127.0.0.1:5000/process',
+        url: 'http://127.0.0.1:5001/process',
         type: 'POST',
         data: { 'data': value },
         success: function() {
