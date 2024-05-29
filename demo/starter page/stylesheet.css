@@ -78,7 +78,7 @@ main{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('image/background.webp'); /* Replace 'background.jpg' with the path to your image */
+    background-image: url('../Tags page/image/background.webp'); /* Replace 'background.jpg' with the path to your image */
     background-size: cover;
     background-position: center;
     opacity: 0.5; /* Adjust the opacity to your preference */

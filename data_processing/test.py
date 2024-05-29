@@ -1,7 +1,7 @@
 import json
 
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS 
 import ibcf.ibcf as IBCF
 
 app = Flask(__name__, template_folder="template")
@@ -16,11 +16,6 @@ def find_value_by_label(file_path, target_label):
                 return int(item.get("value"))
 
 
-@app.route("/")
-def hello():
-    return render_template('test.html')
-
-
 @app.route('/process', methods=['POST'])
 def process():
     label = request.form.get('data')
@@ -32,4 +27,4 @@ def process():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5000)

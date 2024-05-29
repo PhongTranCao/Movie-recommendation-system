@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+from sklearn.neighbors import NearestNeighbors
 import joblib
 
 
@@ -24,11 +25,11 @@ def print_similar_movies(item_input):
     distances, indices = model_knn.kneighbors(query_index_movie_ratings, n_neighbors=11)
     indices_flat = indices.flatten().reshape(-1) + 1
     indices_flat_list = [{"value": "{0}".format(value)} for value in indices_flat]
-    with open('../data_processing/movies_recommend_list.json', 'w') as file:
+    with open('../data_processing/movies_recommend_id_list.json', 'w') as file:
         json.dump(indices_flat_list, file, ensure_ascii=False, indent=4)
     with open('../data_processing/movies_no_tags.json', 'r') as file:
         data1 = json.load(file)
-    with open('../data_processing/movies_recommend_list.json', 'r') as file:
+    with open('../data_processing/movies_recommend_id_list.json', 'r') as file:
         data2 = json.load(file)
     lookup = {entry['value']: entry['label'] for entry in data1}
     result = [lookup[entry['value']] for entry in data2 if entry['value'] in lookup]
