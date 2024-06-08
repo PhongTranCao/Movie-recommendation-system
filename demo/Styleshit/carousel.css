@@ -22,15 +22,16 @@
 /*Slide CSS*/
 
 .carousel{
-    margin-left: 10%;
-    max-width: 80%;
+    margin-left: 5%;
+    max-width: 90%;
+    max-height: 130%;
 }
 
 .carousel-item{
     background-position-y: 30%;
     background-position-x: 0;
     background-size: 120%;
-    min-height: 480px;
+    min-height: 600px;
 }
 
 .hero-slide-item-content {

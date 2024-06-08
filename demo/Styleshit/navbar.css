@@ -23,17 +23,17 @@
 
 .nav-wrapper span{
     display: inline;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .navbar-nav > .nav-item{
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .nav-link{
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
