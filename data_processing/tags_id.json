@@ -1,0 +1,74 @@
+[
+    {
+        "tags_id": 0,
+        "tag": "Action"
+    },
+    {
+        "tags_id": 1,
+        "tag": "Adventure"
+    },
+    {
+        "tags_id": 2,
+        "tag": "Animation"
+    },
+    {
+        "tags_id": 3,
+        "tag": "Children's"
+    },
+    {
+        "tags_id": 4,
+        "tag": "Comedy"
+    },
+    {
+        "tags_id": 5,
+        "tag": "Crime"
+    },
+    {
+        "tags_id": 6,
+        "tag": "Documentary"
+    },
+    {
+        "tags_id": 7,
+        "tag": "Drama"
+    },
+    {
+        "tags_id": 8,
+        "tag": "Fantasy"
+    },
+    {
+        "tags_id": 9,
+        "tag": "Film-Noir"
+    },
+    {
+        "tags_id": 10,
+        "tag": "Horror"
+    },
+    {
+        "tags_id": 11,
+        "tag": "Musical"
+    },
+    {
+        "tags_id": 12,
+        "tag": "Mystery"
+    },
+    {
+        "tags_id": 13,
+        "tag": "Romance"
+    },
+    {
+        "tags_id": 14,
+        "tag": "Sci-Fi"
+    },
+    {
+        "tags_id": 15,
+        "tag": "Thriller"
+    },
+    {
+        "tags_id": 16,
+        "tag": "War"
+    },
+    {
+        "tags_id": 17,
+        "tag": "Western"
+    }
+]
