@@ -171,13 +171,14 @@ function showMovies(data) {
                 <h3>Overview</h3>
                 ${overview}
                 <br/> 
-                <button class="know-more" id="${id}">Know More</button>
+                <button class="know-more" id="${title}">Watch Now</button>
             </div>
         `;
         main.appendChild(movieEl);
 
-        document.getElementById(id).addEventListener('click', () => {
-            openNav(movie);
+        document.getElementById(title).addEventListener('click', () => {
+            localStorage.setItem('movieTitle', title);
+            window.location.href = '../Recommendation page/carousel.html';
         });
     });
 }
