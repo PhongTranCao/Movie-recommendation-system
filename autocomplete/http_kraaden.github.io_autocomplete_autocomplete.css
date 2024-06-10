@@ -13,8 +13,9 @@
 }
 
 .autocomplete > div {
-    margin : 8px;
-    padding: 0 4px;
+    transition: 1s;
+    border: 1px solid rgba(50, 50, 50, 0.6);
+    padding: 8px;
 }
 
 .autocomplete .group {
@@ -23,7 +24,7 @@
 
 .autocomplete > div:hover:not(.group),
 .autocomplete > div.selected {
+    transition: 0s;
     background: lightskyblue;
-    cursor: pointer;
 }
 

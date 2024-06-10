@@ -5,17 +5,12 @@ const apiKey = 'AIzaSyDJ6-xvW5vxyDCkf6SoiUOfay2Wlne_m-4'
 const maxResults = 1;
 const main = document.getElementById('carousel-inner')
 let movies;
-// const test_URL = 'https://api.themoviedb.org/3/search/movie?include_adult=false&query=anime&page=1&sort_by=popularity.desc&' + API_Key
-
 
 // Initial Movies Data
 
-/*$.getJSON('../../data_processing/movies_recommend_name_list.json', function (data){
+$.getJSON('../../data_processing/movies_no_tags.json', function (data){
     movies = data;
-})*/
-fetch('../../data_processing/movies_recommend_name_list.json')
-    .then(response => { return response.json()})
-    .then(data => movies = data)
+})
 // End Initial Movies Data
 
 
@@ -130,7 +125,6 @@ function sendData() {
         data: { 'data': value },
         success: function() {
             getMovies()
-            // document.getElementById('output').innerHTML = response;
         },
         error: function(error) {
             console.log(error);
