@@ -10,14 +10,16 @@ let genres, movies;
 
 fetch('../../data_processing/movies.json')
     .then(response => { return response.json()})
-    .then(data => movies = data)
+    .then(data => {
+        movies = data;
+        console.log(movies);
+    })
 
 fetch('../../data_processing/tags_id.json')
     .then(response => { return response.json()})
     .then(data => {
         genres = data
         Promise.all(genres).then(()=> {
-            console.log(genres);
             setGenre();})
     })
 
@@ -37,7 +39,6 @@ var lastUrl = '';
 var totalPages = 100;
 
 var selectedGenre = []
-setGenre();
 function setGenre() {
     tagsEl.innerHTML= '';
     genres.forEach(genre => {
@@ -60,7 +61,7 @@ function setGenre() {
                 }
             }
             console.log(selectedGenre)
-            getMovies(/*API_URL + '&with_genres='+encodeURI(selectedGenre.join(','))*/)
+            getMovies()
             highlightSelection()
         })
         tagsEl.append(t);
@@ -90,11 +91,11 @@ function clearBtn() {
         let clear = document.createElement('div');
         clear.classList.add('tag', 'highlight');
         clear.id = 'clear';
-        clear.innerText = 'Clear x';
+        clear.innerText = 'Clear';
         clear.addEventListener('click', () => {
             selectedGenre = [];
             setGenre();
-            clearMovies(); // Xóa danh sách phim khi người dùng xóa thể loại
+            clearMovies();
             getMovies();
         });
         tagsEl.append(clear);
@@ -113,34 +114,31 @@ function processMovieLabel(label) {
 
 function getMovies() {
     if (isGenreSelected()) {
-        fetch('../../data_processing/movies_recommend_name_list.json')
-            .then(res => res.json())
-            .then(data => {
-                const data_for_shown = [];
-                const fetchPromises = data.map(movie => {
-                const name = processMovieLabel(movie.label);
-                const url = `${base_URL}${name}${API_Key}`;
+            const filteredMovies = movies.filter(movie => selectedGenre.every(tag => movie.tags.includes(tag)));
+            const data_for_shown = [];
+            const fetchPromises = filteredMovies.map(movie => {
+            const name = processMovieLabel(movie.movie_title);
+            const url = `${base_URL}${name}${API_Key}`;
 
-                return fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.results && data.results[0]) data_for_shown.push(data.results[0]);
-                    });});
-                Promise.all(fetchPromises)
-                .then(() => {
-                    console.log(data_for_shown);
-                    if (!data_for_shown.results) {
-                    showMovies(data_for_shown);
+            return fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.results && data.results[0]) data_for_shown.push(data.results[0]);
+                });});
+            Promise.all(fetchPromises)
+            .then(() => {
+                console.log(data_for_shown);
+                if (!data_for_shown.results) {
+                showMovies(data_for_shown.slice(0,12));
 
-                    tagsEl.scrollIntoView({ behavior: 'smooth' })
-                } else {
-                    clearMovies(); // Nếu không có kết quả, xóa danh sách phim
-                    main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
-                }
-                })
-            });
+                tagsEl.scrollIntoView({ behavior: 'smooth' })
+            } else {
+                clearMovies();
+                main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
+            }
+            })
     } else {
-        clearMovies(); // Nếu chưa chọn thể loại, xóa danh sách phim
+        clearMovies();
     }
 }
 
@@ -152,12 +150,7 @@ function clearMovies() {
 
 function showMovies(data) {
     main.innerHTML = '';
-
-    const filteredMovies = movies.filter(movie => selectedGenre.every(tag => movie.tags.includes(tag)));
-    const slicedData = data.filter(movie =>
-        filteredMovies.some(filteredMovie => filteredMovie.title === movie.movie_title)
-    );
-    slicedData.forEach(movie => {
+    data.forEach(movie => {
         const { title, poster_path, vote_average, overview, id } = movie;
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
@@ -195,15 +188,9 @@ function getColor(vote) {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const searchTerm = search.value;
     selectedGenre=[];
     setGenre();
-    if(searchTerm) {
-        getMovies(searchURL+'&query='+searchTerm)
-    }else{
-        getMovies(API_URL);
-    }
 
 })
 
