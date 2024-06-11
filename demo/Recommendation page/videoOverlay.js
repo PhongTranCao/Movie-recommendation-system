@@ -11,7 +11,7 @@ document.getElementById('video-overlay').addEventListener('click', (event) => {
 });
 
 async function fetchVideo(query) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&key=${apiKey}&maxResults=${maxResults}&type=video`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}+trailer&key=${apiKey}&maxResults=${maxResults}&type=video`;
 
     try {
         const response = await fetch(url);
