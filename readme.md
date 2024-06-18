@@ -7,9 +7,10 @@ In this project, we implements three models for a movie recommendation system: F
 
 ### Project Organization
 ```
-model/                        # model deployment
-...
-README.md        
+model/                      # model deployment, training, evaluation
+WEB/                        # website's UI/UX
+data_preprocessing/         # data preprocessing
+README.md            
 ```
 ### Dataset
 MovieLens1M from GroupLens
