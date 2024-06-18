@@ -3,8 +3,7 @@
 ## Movie Recommendation System - MovieGems
 
 ### Introduction
-Film, often regarded as the seventh art, now plays a significant role in enhancing the spiritual lives of human beings. The movie recommendation system utilizes AI technology to select films that best cater to the needs of audiences faced with a multitude of options on a website's interface. In this project, we implement three models: FunkSVD, Item-based Collaborative Filtering with Cosine Similarity, and Content-based Filtering with Ridge Regression - using various machine learning and deep learning techniques to assess their effectiveness. This process enables us to identify the strengths and weaknesses of each model, helping us determine the most suitable one for our project.
-
+In this project, we implements three models for a movie recommendation system: FunkSVD, Item-based Collaborative Filtering with Cosine Similarity, and Content-based Filtering with Ridge Regression. Using a range of machine learning and deep learning techniques, the project evaluates the effectiveness of each model. The goal is to identify the strengths and weaknesses of these models to determine the most suitable one for the recommendation system, thereby improving the user experience on a website's interface.
 
 ### Project Organization
 ```
