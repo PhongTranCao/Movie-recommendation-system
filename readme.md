@@ -32,7 +32,7 @@ MovieLens1M from GroupLens
             <th align="center">Student ID</th>
         </tr>
         <tr>
-            <td>Đặng Văn Nhân</td>
+            <td>Dang Van Nhan</td>
             <td align="center"> 20225990&nbsp;&nbsp;&nbsp;</td>
         </tr>
         <tr>
@@ -40,15 +40,15 @@ MovieLens1M from GroupLens
             <td align="center"> 20225991&nbsp;&nbsp;&nbsp;</td>
         </tr>
         <tr>
-            <td>Trần Cao Phong</td>
+            <td>Tran Cao Phong</td>
             <td align="center"> 20226061&nbsp;&nbsp;&nbsp;</td>
         </tr>
         <tr>
-            <td>Bùi Hà My</td>
+            <td>Bui Ha My</td>
             <td align="center"> 20225987&nbsp;&nbsp;&nbsp;</td>
         </tr>
         <tr>
-            <td>Trần Kim Cương</td>
+            <td>Tran Kim Cuong</td>
             <td align="center"> 20226017&nbsp;&nbsp;&nbsp;</td>
         </tr>
     </tbody>
