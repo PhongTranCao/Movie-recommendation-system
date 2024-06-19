@@ -7,13 +7,11 @@ dataset = pd.read_csv('../data_processing/ratings.dat',
                       sep='::',
                       names=['user', 'item', 'rating', 'timestamp'],
                       engine='python').drop('timestamp', axis=1)
-print(dataset.head())
 avg_movie_rating = pd.DataFrame(dataset.groupby('item')['rating'].agg(['mean', 'count']))
 missing_index_dataset = dataset.merge(avg_movie_rating, on='item').sort_values('item')
 max_item = max(avg_movie_rating.index)
 all_items_df = pd.DataFrame({'item': range(1, max_item + 1)})
 full_dataset = pd.merge(all_items_df, missing_index_dataset, on='item', how='left')
-
 
 
 model_knn = joblib.load('../data_processing/model_knn.pkl')
