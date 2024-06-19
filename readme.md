@@ -13,10 +13,10 @@ data_preprocessing/         # data preprocessing
 README.md            
 ```
 ### Dataset
-MovieLens1M from GroupLens
+MovieLens1M from GroupLens.
 ### Installation
-- Install python, latest version recommended
-- Install packages/libraries: pandas, numpy, scikit-learn, numba, flask, flask-cors, pickle
+- Install python, latest version recommended.
+- Install packages/libraries: pandas, numpy, scikit-learn, numba, flask, flask-cors, pickle.
 - Browser with latest version recommended, in order to fully support web's features.
 ### Usage
 - For evaluation, run "ibcf/RMSE.py" or "FunkSVD/".
