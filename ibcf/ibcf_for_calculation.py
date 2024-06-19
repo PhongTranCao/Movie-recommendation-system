@@ -45,16 +45,18 @@ train_matrix = train_df.pivot(index='item', columns='user', values='rating').fil
 # joblib.dump(model_knn, 'model_knn.pkl')
 
 
-def print_similar_movies(item_input):
-    query_index_movie_ratings = test_matrix[item_input, :].reshape(1, -1)
+def print_similar_movies(item_input, matrix):
+    query_index_movie_ratings = matrix[item_input, :].reshape(1, -1)
     distances, indices = model_knn.kneighbors(query_index_movie_ratings, n_neighbors=11)
     all_avg_item_rating = all_item_cossim = movie_counter = 0
 
     for i in range(0, len(distances.flatten())):
         indices_flat = indices.flatten()[i]
-        if i == 0 or indices_flat not in avg_movie_rating.index:
-            continue
+        if i == 0:
             # print('Recommendations for {0}:\n'.format(item_input))
+            continue
+        elif indices_flat not in avg_movie_rating.index:
+            continue
         elif movie_counter == 10:
             break
         else:
@@ -75,8 +77,14 @@ def print_similar_movies(item_input):
     return np.array([item_input, all_avg_item_rating / all_item_cossim])
 
 
-predict_rating = np.empty((0, 2))
-for i in test['item'].unique():
-    predict_rating = np.append(predict_rating, [print_similar_movies(i)], axis=0)
+# predict_test_rating = np.empty((0, 2))
+# for i in test['item'].unique():
+#     predict_rating = np.append(predict_test_rating, [print_similar_movies(i, test_matrix)], axis=0)
+#
+# np.savetxt('../data_processing/predict_test_movie_rating.dat', predict_test_rating, delimiter='::', fmt=['%d', '%.2f'])
 
-np.savetxt('../data_processing/predict_movie_rating.dat', predict_rating, delimiter='::', fmt=['%d', '%.2f'])
+predict_train_rating = np.empty((0, 2))
+for i in train['item'].unique():
+    predict_train_rating = np.append(predict_train_rating, [print_similar_movies(i, train_matrix)], axis=0)
+
+np.savetxt('../data_processing/predict_train_movie_rating.dat', predict_train_rating, delimiter='::', fmt=['%d', '%.2f'])
